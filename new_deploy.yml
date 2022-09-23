@@ -1,0 +1,70 @@
+---
+- hosts: all
+  become: true
+  tasks:
+  - name: update repository index
+    apt:
+       update_cache: yes
+    when: ansible_distribution == "Ubuntu"
+  - name: install baseline packages for Debian
+    apt:
+       name:
+         - ncdu
+         - whois
+         - mc
+         - htop
+         - iotop
+         - tcpdump
+         - net-tools
+         - sysstat
+         - wget
+         - tmux
+         - screen
+         - zsh
+         - zsh-syntax-highlighting
+         - git
+         - curl
+         - gpg
+         - traceroute
+         - open-vm-tools
+         - httping
+         - iproute-tc
+         - yum-plugin-versionlock
+         - bind-utils
+         - freeipa-client
+         - vim         
+       state: latest
+    when: ansible_distribution == "Debian"
+  - name: update repository index
+    dnf:
+       update_cache: yes
+    when: ansible_distribution == "Rocky"
+  - name: install baseline packages for Rocky
+    dnf:
+       name:
+         - ncdu
+         - whois
+         - mc
+         - htop
+         - iotop
+         - tcpdump
+         - net-tools
+         - sysstat
+         - wget
+         - tmux
+         - screen
+         - zsh
+         - zsh-syntax-highlighting
+         - git
+         - curl
+         - gpg
+         - traceroute
+         - open-vm-tools
+         - httping
+         - iproute-tc
+         - yum-plugin-versionlock
+         - bind-utils
+         - freeipa-client
+         - vim
+       state: latest
+    when: ansible_distribution == "CentOS"

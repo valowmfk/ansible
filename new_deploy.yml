@@ -5,7 +5,7 @@
   - name: update repository index
     apt:
        update_cache: yes
-    when: ansible_distribution == "Ubuntu"
+    when: ansible_distribution == "Debian"
   - name: install baseline packages for Debian
     apt:
        name:
@@ -28,20 +28,18 @@
          - traceroute
          - open-vm-tools
          - httping
-         - iproute-tc
-         - yum-plugin-versionlock
-         - bind-utils
          - freeipa-client
          - vim         
        state: latest
     when: ansible_distribution == "Debian"
   - name: update repository index
-    dnf:
+    ansible.builtin.dnf:
        update_cache: yes
     when: ansible_distribution == "Rocky"
   - name: install baseline packages for Rocky
-    dnf:
+    ansible.builtin.dnf:
        name:
+         - epel-release
          - ncdu
          - whois
          - mc
@@ -67,4 +65,4 @@
          - freeipa-client
          - vim
        state: latest
-    when: ansible_distribution == "CentOS"
+    when: ansible_distribution == "Rocky"

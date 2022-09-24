@@ -1,0 +1,16 @@
+---
+- name: get_url ohmyzsh
+  hosts: all
+  become: true
+  vars:
+    myurl: "https://github.com/robbyrussell/oh-my-zsh/raw/master/tools/install.sh"
+    mydest: "/home/mklouda"
+  tasks:
+    - name: download file
+      ansible.builtin.get_url:
+        url: "{{ myurl }}"
+        dest: "{{ mydest }}"
+        mode: '0644'
+        owner: mklouda
+        group: mklouda
+        

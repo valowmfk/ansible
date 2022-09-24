@@ -1,0 +1,36 @@
+---
+- name: Download OhMyZsh
+  hosts: all
+  tasks:
+  - name: Create Dir
+    become: true
+    file:
+      path: /home/mklouda/download
+      state: directory
+      mode: 0755
+      owner: mklouda
+      group: mklouda
+  - name: wget OhMyZsh
+    beco9me: yes
+    get_url:
+      url: https://github.com/robbyrussell/oh-my-zsh/raw/master/tools/install.sh -O - | zsh
+      dest: ~/
+      mode: 0755
+---
+- name: Download OhMyZsh
+  hosts: all
+  tasks:
+    - name: Create Dir
+      become: true
+      file:
+        path: /home/mklouda/download
+        state: directory
+        mode: 0755
+        owner: mklouda
+        group: mklouda
+    - name: wget OhMyZsh
+      beco9me: yes
+      get_url:
+        url: https://github.com/robbyrussell/oh-my-zsh/raw/master/tools/install.sh -O - | zsh
+        dest: ~/
+        mode: 0755

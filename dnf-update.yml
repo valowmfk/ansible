@@ -10,8 +10,8 @@
       state: latest
     when: ansible_facts['os_family'] == 'Rocky' and ansible_facts ['distribution_major_version'] >= '8'
 
-  - name: Enable EPEL Repository on Rocky 9
-    yum:
-      name: epel-release
-      state: latest
-    when: ansible_facts['os_family'] == 'Rocky' and ansible_facts ['distribution_major_version'] == '9'
+  - name: DNF update the system
+    dnf:
+      name:  "httpd"
+      state: present
+    when: ansible_facts['os_family'] == 'Rocky' and ansible_facts  ['distribution_major_version'] >= '8'

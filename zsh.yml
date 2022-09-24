@@ -1,16 +1,19 @@
----
-- name: get_url ohmyzsh
+--- 
+- 
+  gather_facts: true
   hosts: all
-  become: true
-  vars:
-    myurl: "https://github.com/robbyrussell/oh-my-zsh/raw/master/tools/install.sh"
-    mydest: "/home/mklouda"
-  tasks:
-    - name: download file
-      ansible.builtin.get_url:
-        url: "{{ myurl }}"
-        dest: "{{ mydest }}"
-        mode: '0644'
-        owner: mklouda
-        group: mklouda
-        
+  tasks: 
+    - 
+      apt: 
+        name: zsh
+        state: latest
+      become: true
+      name: "Install ZSH"
+      when: "ansible_facts['os_family'] == 'Debian' and ansible_facts  ['distribution_major_version'] >= '10'"
+    - 
+      become: true
+      dnf: 
+        name: zsh
+        state: latest
+      name: "Install ZSH"
+      when: "ansible_facts['os_family'] == 'Rocky' and ansible_facts  ['distribution_major_version'] >= '8'"

@@ -1,0 +1,40 @@
+--- 
+- 
+  become: true
+  hosts: all
+  name: "setup ohmyzsh for users"
+  tasks: 
+    - 
+      include_role: 
+        name: gantsign.oh-my-zsh
+      loop: "{{ userlist }}"
+      name: "run role for each user"
+      vars: 
+        users: 
+          - 
+            oh_my_zsh: 
+              plugins: 
+                - git
+                - docker
+                - sudo
+                - cp
+                - dnf
+                - git
+                - extract
+                - web-search
+                - yum
+                - git-extras
+                - docker
+                - docker-compose
+                - kubectl
+                - man
+                - sudo
+                - vscode
+                - zsh-interactive-cd
+                - zsh-navigation-tools
+              theme: fino-time
+            username: "{{ item.username }}"
+  vars: 
+    userlist: 
+      - 
+        username: mklouda

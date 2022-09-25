@@ -9,6 +9,7 @@
       dnf: 
         update_cache: true
       name: "update repository index"
+      when: "ansible_facts['os_family'] == 'Rocky' and ansible_facts ['distribution_major_version'] >= '8'"
     - 
       dnf: 
         name: epel-release
@@ -19,6 +20,7 @@
       apt: 
         update_cache: true
       name: "update repository index"
+      when: "ansible_facts['os_family'] == 'Debian' and ansible_facts ['distribution_major_version'] >= '10'"
     - 
       apt: 
         name: epel-release

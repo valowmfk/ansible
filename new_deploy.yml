@@ -1,64 +1,69 @@
----
-- hosts: all
+--- 
+- 
   become: true
-  tasks:
-  - name: update repository index
-    apt:
-       update_cache: yes
-    when: ansible_distribution == "Debian"
-  - name: install baseline packages for Debian
-    apt:
-       name:
-         - ncdu
-         - whois
-         - mc
-         - htop
-         - iotop
-         - tcpdump
-         - net-tools
-         - sysstat
-         - wget
-         - tmux
-         - screen
-         - git
-         - curl
-         - gpg
-         - traceroute
-         - open-vm-tools
-         - httping
-         - freeipa-client
-         - vim
-       state: latest
-    when: ansible_distribution == "Debian"
-  - name: update repository index
-    ansible.builtin.dnf:
-       update_cache: yes
-    when: ansible_distribution == "Rocky"
-  - name: install baseline packages for Rocky
-    ansible.builtin.dnf:
-       name:
-         - epel-release
-         - ncdu
-         - whois
-         - mc
-         - htop
-         - iotop
-         - tcpdump
-         - net-tools
-         - sysstat
-         - wget
-         - tmux
-         - screen
-         - git
-         - curl
-         - gpg
-         - traceroute
-         - open-vm-tools
-         - httping
-         - iproute-tc
-         - yum-plugin-versionlock
-         - bind-utils
-         - freeipa-client
-         - vim
-       state: latest
-    when: ansible_distribution == "Rocky"
+  hosts: all
+  tasks: 
+    - 
+      apt: 
+        update_cache: true
+      name: "update repository index"
+      when: "ansible_facts['os_family'] == 'Debian' and ansible_facts ['distribution_major_version'] >= '10'"
+    - 
+      apt: 
+        name: 
+          - ncdu
+          - whois
+          - mc
+          - htop
+          - iotop
+          - tcpdump
+          - net-tools
+          - sysstat
+          - wget
+          - tmux
+          - screen
+          - git
+          - curl
+          - gpg
+          - traceroute
+          - open-vm-tools
+          - httping
+          - freeipa-client
+          - vim
+        state: latest
+      name: "install baseline packages for Debian"
+      when: "ansible_facts['os_family'] == 'Debian' and ansible_facts ['distribution_major_version'] >= '10'"
+    - 
+      dnf: 
+        update_cache: true
+      name: "update repository index"
+      when: "ansible_facts['os_family'] == 'Rocky' and ansible_facts ['distribution_major_version'] >= '8'"
+    - 
+      dnf: 
+        name: 
+          - epel-release
+          - ncdu
+          - whois
+          - mc
+          - htop
+          - iotop
+          - tcpdump
+          - net-tools
+          - sysstat
+          - wget
+          - tmux
+          - screen
+          - git
+          - curl
+          - gpg
+          - traceroute
+          - open-vm-tools
+          - httping
+          - iproute-tc
+          - yum-plugin-versionlock
+          - bind-utils
+          - freeipa-client
+          - vim
+        state: latest
+      name: "install baseline packages for Rocky"
+      when: "ansible_facts['os_family'] == 'Rocky' and ansible_facts ['distribution_major_version'] >= '8'"

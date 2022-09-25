@@ -1,0 +1,6 @@
+- hosts: all
+  tasks:
+    - authorized_key:
+        user: mklouda
+        state: present
+        key: "{{ lookup('file', '/home/mklouda/.ssh/ansible.pub') }}"

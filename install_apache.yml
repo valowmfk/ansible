@@ -1,8 +1,0 @@
----
- - hosts: all
-   become: true
-   tasks:
-   - name: install httpd package
-     dnf:
-       name: trace-cmd
-     when: ansible_distribution == "Rocky"

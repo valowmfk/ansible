@@ -20,8 +20,6 @@
          - wget
          - tmux
          - screen
-         - zsh
-         - zsh-syntax-highlighting
          - git
          - curl
          - gpg
@@ -29,7 +27,7 @@
          - open-vm-tools
          - httping
          - freeipa-client
-         - vim         
+         - vim
        state: latest
     when: ansible_distribution == "Debian"
   - name: update repository index
@@ -51,8 +49,6 @@
          - wget
          - tmux
          - screen
-         - zsh
-         - zsh-syntax-highlighting
          - git
          - curl
          - gpg

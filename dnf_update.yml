@@ -15,7 +15,6 @@
         state: latest
       name: "Enable EPEL Repository on Rocky 8"
       when: "ansible_facts['os_family'] == 'Rocky' and ansible_facts ['distribution_major_version'] >= '8'"
-  tasks: 
     - 
       apt: 
         update_cache: true

@@ -1,0 +1,16 @@
+- name: Create a10.acos_axapi.a10_health_monitor example playbook
+  connection: local
+  hosts: vthunder
+  tasks:
+  - name: Create a10.acos_axapi.a10_health_monitor instance
+    a10.acos_axapi.a10_health_monitor:
+      up_retry: 1
+      retry: 1
+      method:
+        tcp:
+          port_send: 'ping'
+          method_tcp: 1
+          port_resp:
+            port_contains: 'ping'
+          tcp_port: 80
+      name: my_monitor_test

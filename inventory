@@ -4,3 +4,11 @@ rocky2.home.klouda.co
 [debian]
 debian1.home.klouda.co
 debian2.home.klouda.co
+
+[vthunder]
+172.16.30.93
+
+[vthunder:vars]
+ansible_username=admin
+ansible_password=a10
+ansible_port=443

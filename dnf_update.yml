@@ -2,15 +2,17 @@
 - 
   become: true
   gather_facts: true
-  hosts: test-rocky.home.klouda.co
+  hosts: all
   strategy: free
   tasks: 
     - 
-      package: 
+      ansible.builtin.dnf: 
         update_cache: true
-      name: "update repository index"
+      name: "update dnf cache"
+      when: "ansible_pkg_mgr == \"dnf\""
     - 
+      name: "Enable EPEL Repository on Rocky 8"
       package: 
         name: epel-release
         state: present
-      name: "Enable EPEL Repository on Rocky 8"
+

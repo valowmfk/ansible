@@ -55,9 +55,9 @@
           - traceroute
           - open-vm-tools
           - httping
-          - iproute-tc
           - yum-plugin-versionlock
           - bind-utils
           - freeipa-client
           - vim
+          - zsh-syntax-highlighting
         state: present

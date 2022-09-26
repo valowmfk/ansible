@@ -1,0 +1,17 @@
+- hosts: all
+  become: yes
+  tasks:
+    - name: update apt cache
+      ansible.builtin.apt:
+        update_cache: yes
+      when: ansible_pkg_mgr == "apt"
+    
+    - name: update yum cache
+      ansible.builtin.yum:
+        update_cache: yes
+      when: ansible_pkg_mgr == "yum"
+    
+    - name: update dnf cache
+      ansible.builtin.dnf:
+        update_cache: yes
+      when: ansible_pkg_mgr == "dnf"

@@ -1,6 +1,8 @@
-- hosts: all
+- name: Copy Key
+  hosts: all
   tasks:
-    - authorized_key:
+    - name: Install Key
+      authorized_key:
         user: mklouda
         state: present
         key: "{{ lookup('file', '/home/mklouda/.ssh/ansible.pub') }}"

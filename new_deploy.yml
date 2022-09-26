@@ -2,6 +2,7 @@
 - 
   become: true
   hosts: all
+  gather_facts: true
   tasks: 
     - 
       apt: 
@@ -41,7 +42,6 @@
     - 
       dnf: 
         name: 
-          - epel-release
           - ncdu
           - whois
           - mc

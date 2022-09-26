@@ -1,3 +1,4 @@
+# ansible-playbook pub_key.yml --ask-pass
 - name: Copy Key
   hosts: all
   tasks:

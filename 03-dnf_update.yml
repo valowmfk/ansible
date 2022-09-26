@@ -2,7 +2,7 @@
 - 
   become: true
   gather_facts: true
-  hosts: all
+  hosts: rocky
   strategy: free
   tasks: 
     - 

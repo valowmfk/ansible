@@ -1,0 +1,17 @@
+--- 
+- 
+  become: true
+  gather_facts: true
+  hosts: all
+  strategy: free
+  tasks: 
+    - 
+      ansible.builtin.apt: 
+        update_cache: true
+      name: "update apt cache"
+      when: "ansible_pkg_mgr == \"apt\""
+    - 
+      ansible.builtin.dnf: 
+        update_cache: true
+      name: "update dnf cache"
+      when: "ansible_pkg_mgr == \"dnf\""

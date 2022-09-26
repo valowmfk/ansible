@@ -1,8 +1,8 @@
 --- 
 - 
   become: true
-  hosts: all
   gather_facts: true
+  hosts: all
   tasks: 
     - 
       apt: 
@@ -31,16 +31,12 @@
           - httping
           - freeipa-client
           - vim
-        state: latest
+        state: present
       name: "install baseline packages for Debian"
       when: "ansible_facts['os_family'] == 'Debian' and ansible_facts ['distribution_major_version'] >= '10'"
     - 
-      dnf: 
-        update_cache: true
-      name: "update repository index"
-      when: "ansible_facts['os_family'] == 'Rocky' and ansible_facts ['distribution_major_version'] >= '8'"
-    - 
-      dnf: 
+      name: "install baseline packages for Rocky"
+      package: 
         name: 
           - ncdu
           - whois
@@ -64,6 +60,4 @@
           - bind-utils
           - freeipa-client
           - vim
-        state: latest
-      name: "install baseline packages for Rocky"
-      when: "ansible_facts['os_family'] == 'Rocky' and ansible_facts ['distribution_major_version'] >= '8'"
+        state: present

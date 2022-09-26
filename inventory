@@ -1,1 +1,6 @@
-ansible.home.klouda.co
+[rocky]
+rocky1.home.klouda.co
+rocky2.home.klouda.co
+[debian]
+debian1.home.klouda.co
+debian2.home.klouda.co

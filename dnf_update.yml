@@ -2,28 +2,15 @@
 - 
   become: true
   gather_facts: true
-  hosts: all
+  hosts: test-rocky.home.klouda.co
   strategy: free
   tasks: 
     - 
-      dnf: 
+      package: 
         update_cache: true
       name: "update repository index"
-      when: "ansible_facts['os_family'] == 'Rocky' and ansible_facts ['distribution_major_version'] >= '8'"
     - 
-      dnf: 
+      package: 
         name: epel-release
-        state: latest
+        state: present
       name: "Enable EPEL Repository on Rocky 8"
-      when: "ansible_facts['os_family'] == 'Rocky' and ansible_facts ['distribution_major_version'] >= '8'"
-    - 
-      apt: 
-        update_cache: true
-      name: "update repository index"
-      when: "ansible_facts['os_family'] == 'Debian' and ansible_facts ['distribution_major_version'] >= '10'"
-    - 
-      apt: 
-        name: epel-release
-        state: latest
-      name: "Enable EPEL Repository on Debian 10"
-      when: "ansible_facts['os_family'] == 'Debian' and ansible_facts ['distribution_major_version'] >= '10'"

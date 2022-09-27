@@ -5,6 +5,12 @@ rocky2.home.klouda.co
 debian1.home.klouda.co
 debian2.home.klouda.co
 
+[servers]
+rocky1.home.klouda.co
+rocky2.home.klouda.co
+debian1.home.klouda.co
+debian2.home.klouda.co
+
 [vthunder]
 172.16.30.93
 

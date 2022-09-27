@@ -2,7 +2,7 @@
 - 
   become: true
   gather_facts: true
-  hosts: rocky
+  hosts: all
   strategy: free
   tasks: 
     - 
@@ -15,4 +15,3 @@
       package: 
         name: epel-release
         state: present
-

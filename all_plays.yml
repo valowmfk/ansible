@@ -1,0 +1,131 @@
+--- 
+- 
+  become: true
+  name: "Install baseline packages for Debian with apt"
+  tasks: 
+    - 
+      ansible.builtin.apt: 
+        update_cache: true
+      name: "update apt cache"
+      when: "ansible_pkg_mgr == \"apt\""
+    - 
+      ansible.builtin.yum: 
+        update_cache: true
+      name: "update yum cache"
+      when: "ansible_pkg_mgr == \"yum\""
+    - 
+      ansible.builtin.dnf: 
+        update_cache: true
+      name: "update dnf cache"
+      when: "ansible_pkg_mgr == \"dnf\""
+    - 
+      ansible.builtin.dnf: 
+        update_cache: true
+      name: "update dnf cache"
+      when: "ansible_pkg_mgr == \"dnf\""
+    - 
+      name: "Enable EPEL Repository on Rocky 8"
+      package: 
+        name: epel-release
+        state: present
+    - 
+      include_role: 
+        name: gantsign.oh-my-zsh
+      loop: "{{ userlist }}"
+      name: "run role for each user"
+      vars: 
+        users: 
+          - 
+            oh_my_zsh: 
+              plugins: 
+                - git
+                - docker
+                - sudo
+                - cp
+                - dnf
+                - git
+                - extract
+                - web-search
+                - yum
+                - git-extras
+                - docker
+                - docker-compose
+                - kubectl
+                - man
+                - sudo
+                - vscode
+                - zsh-interactive-cd
+                - zsh-navigation-tools
+              theme: fino-time
+            username: "{{ item.username }}"
+  vars: 
+    userlist: 
+      - 
+        username: mklouda
+      - 
+        ansible.builtin.apt: ~
+        name: "update apt cache"
+        update_cache: true
+        when: "ansible_pkg_mgr == \"apt\""
+      - 
+        apt: ~
+        name: 
+          - ncdu
+          - whois
+          - mc
+          - htop
+          - iotop
+          - tcpdump
+          - net-tools
+          - sysstat
+          - wget
+          - tmux
+          - screen
+          - zsh
+          - zsh-syntax-highlighting
+          - git
+          - curl
+          - gpg
+          - traceroute
+          - open-vm-tools
+          - httping
+          - freeipa-client
+          - vim
+        state: latest
+  when: "ansible_distribution == \"Debian\""
+- 
+  ansible.builtin.dnf: 
+    update_cache: true
+  name: "update dnf cache"
+  when: "ansible_pkg_mgr == \"dnf\""
+- 
+  dnf: 
+    name: 
+      - ncdu
+      - whois
+      - mc
+      - htop
+      - iotop
+      - tcpdump
+      - net-tools
+      - sysstat
+      - wget
+      - tmux
+      - screen
+      - zsh-syntax-highlighting
+      - git
+      - curl
+      - gpg
+      - traceroute
+      - open-vm-tools
+      - httping
+      - iproute-tc
+      - bind-utils
+      - freeipa-client
+      - vim
+      - iproute-tc
+      - yum-plugin-versionlock
+    state: latest
+  name: "Install baseline packages for Rocky with dnf"
+  when: "ansible_pkg_mgr == \"dnf\""
+

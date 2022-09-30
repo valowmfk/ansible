@@ -1,0 +1,9 @@
+---
+- name: Save Configuration (Write Memory) example playbook
+  connection: local
+  hosts: vthunder
+  tasks:
+  - name: a10.acos_axapi.a10_write_memory instance
+    a10.acos_axapi.a10_write_memory:
+      partition: "shared"
+      destination: "primary"

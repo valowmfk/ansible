@@ -1,0 +1,24 @@
+---
+- become: true
+  gather_facts: true
+  hosts: all
+  strategy: free
+  tasks:
+    - ansible.builtin.dnf:
+        upgrade: yes
+        update_cache: yes
+        cache_valid_time: 86400
+      name: update dnf cache
+      when: ansible_pkg_mgr == "dnf"
+    - ansible.builtin.apt:
+        upgrade: yes
+        update_cache: yes
+        cache_valid_time: 86400
+      name: Update and upgrade apt packages
+      when: ansible_pkg_mgr == "apt"
+    - ansible.builtin.yum:
+        upgrade: yes
+        update_cache: yes
+        cache_valid_time: 86400
+      name: Update and upgrade yum packages
+      when: ansible_pkg_mgr == "yum"

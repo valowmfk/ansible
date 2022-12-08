@@ -1,3 +1,9 @@
 [default]
-demo.home.klouda.co
-rocky.home.klouda.co
+docker-ca.home.klouda.co
+tkc-control.home.klouda.co
+tkc-worker1.home.klouda.co
+tkc-worker2.home.klouda.co
+drax.home.klouda.co
+plex.home.klouda.co
+sandbox.home.klouda.co
+zabbix.home.klouda.co
